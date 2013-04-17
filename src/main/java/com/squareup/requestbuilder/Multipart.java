@@ -97,7 +97,8 @@ public final class Multipart implements Part {
     isNotNull(type, "Multipart type must not be null.");
 
     this.parts = parts;
-    this.headers = Arrays.asList("Content-Type: multipart/" + type.contentType + "; boundary=" + boundary);
+    this.headers =
+        Arrays.asList("Content-Type: multipart/" + type.contentType + "; boundary=" + boundary);
     this.boundary = boundary;
   }
 
