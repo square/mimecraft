@@ -9,12 +9,12 @@
     <version>7</version>
   </parent>
 
-  <groupId>com.squareup</groupId>
-  <artifactId>boundaries</artifactId>
+  <groupId>com.squareup.mimewriter</groupId>
+  <artifactId>mimewriter</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
   <name>Boundaries</name>
-  <description>Utility for creating RFC-compliant HTTP multipart requests.</description>
+  <description>Utility for creating RFC-compliant multipart and form-encoded HTTP request bodies.</description>
   <url>http://github.com/square/boundaries/</url>
 
   <properties>
