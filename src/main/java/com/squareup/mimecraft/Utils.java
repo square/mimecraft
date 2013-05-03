@@ -1,5 +1,5 @@
 // Copyright 2013 Square, Inc.
-package com.squareup.requestbuilder;
+package com.squareup.mimecraft;
 
 import java.io.IOException;
 import java.io.InputStream;

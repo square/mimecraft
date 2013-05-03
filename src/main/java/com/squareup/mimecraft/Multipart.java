@@ -1,5 +1,5 @@
 // Copyright 2013 Square, Inc.
-package com.squareup.requestbuilder;
+package com.squareup.mimecraft;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static com.squareup.requestbuilder.Utils.isNotNull;
+import static com.squareup.mimecraft.Utils.isNotNull;
 
 /** <a href="http://www.ietf.org/rfc/rfc2387.txt">RFC 2387</a>-compliant encoded data. */
 public final class Multipart implements Part {

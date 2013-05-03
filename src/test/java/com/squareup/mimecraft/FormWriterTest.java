@@ -1,10 +1,10 @@
 // Copyright 2013 Square, Inc.
-package com.squareup.requestbuilder;
+package com.squareup.mimecraft;
 
 import java.io.ByteArrayOutputStream;
 import org.junit.Test;
 
-import static com.squareup.requestbuilder.Utils.UTF_8;
+import static com.squareup.mimecraft.Utils.UTF_8;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class FormWriterTest {

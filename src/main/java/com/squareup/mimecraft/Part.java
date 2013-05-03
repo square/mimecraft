@@ -1,5 +1,5 @@
 // Copyright 2013 Square, Inc.
-package com.squareup.requestbuilder;
+package com.squareup.mimecraft;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,12 +9,12 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.squareup.requestbuilder.Utils.UTF_8;
-import static com.squareup.requestbuilder.Utils.copyStream;
-import static com.squareup.requestbuilder.Utils.isNotEmpty;
-import static com.squareup.requestbuilder.Utils.isNotNull;
-import static com.squareup.requestbuilder.Utils.isNotZero;
-import static com.squareup.requestbuilder.Utils.isNull;
+import static com.squareup.mimecraft.Utils.UTF_8;
+import static com.squareup.mimecraft.Utils.copyStream;
+import static com.squareup.mimecraft.Utils.isNotEmpty;
+import static com.squareup.mimecraft.Utils.isNotNull;
+import static com.squareup.mimecraft.Utils.isNotZero;
+import static com.squareup.mimecraft.Utils.isNull;
 
 /** HTTP request data with associated headers. */
 public interface Part {

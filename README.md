@@ -1,5 +1,5 @@
-Mime Writer
-===========
+Mime Craft
+==========
 
 Utility for creating RFC-compliant multipart and form-encoded HTTP request bodies.
 
@@ -14,8 +14,8 @@ You can also depend on the .jar through Maven:
 
 ```xml
 <dependency>
-  <groupId>com.squareup.mimewriter</groupId>
-  <artifactId>mimewriter<artifactId>
+  <groupId>com.squareup.mimecraft</groupId>
+  <artifactId>mimecraft<artifactId>
   <version>(insert latest version)</version>
 </dependency>
 ```
@@ -67,4 +67,4 @@ License
     limitations under the License.
 
 
- [1]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.squareup.mimewriter&a=mimewriter&v=LATEST
+ [1]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.squareup.mimecraft&a=mimecraft&v=LATEST

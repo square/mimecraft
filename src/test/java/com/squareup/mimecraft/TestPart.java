@@ -1,12 +1,12 @@
 // Copyright 2013 Square, Inc.
-package com.squareup.requestbuilder;
+package com.squareup.mimecraft;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 
-import static com.squareup.requestbuilder.Utils.UTF_8;
+import static com.squareup.mimecraft.Utils.UTF_8;
 
 public class TestPart implements Part {
   private final byte[] content;
