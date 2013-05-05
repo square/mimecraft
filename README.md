@@ -8,9 +8,7 @@ Utility for creating RFC-compliant multipart and form-encoded HTTP request bodie
 Download
 --------
 
-Downloadable .jars can be found on the [GitHub download page][2].
-
-You can also depend on the .jar through Maven:
+Download [the latest .jar][1] or depend via Maven:
 
 ```xml
 <dependency>
