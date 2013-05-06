@@ -21,7 +21,10 @@ public interface Part {
   /** HTTP headers. */
   List<String> getHeaders();
 
-  /** Write request data to the specified stream. */
+  /**
+   * Write request data to the specified stream. For best performance use a
+   * {@link java.io.BufferedOutputStream BufferedOutputStream}.
+   */
   void writeBodyTo(OutputStream stream) throws IOException;
 
   /** Fluent API to build {@link Part} instances. */
