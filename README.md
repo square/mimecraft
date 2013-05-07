@@ -32,7 +32,7 @@ FormEncoding fe = new FormEncoding.Builder()
 
 Multipart content:
 ```java
-Multipart m = new Multipart.Builder("123")
+Multipart m = new Multipart.Builder()
     .addPart(new Part.Builder()
         .contentType("image/png")
         .body(new File("/foo/bar/baz.png"))
