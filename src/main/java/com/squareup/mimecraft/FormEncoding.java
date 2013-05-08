@@ -22,7 +22,7 @@ public final class FormEncoding implements Part {
     private final StringBuilder content = new StringBuilder();
 
     /** Add new key-value pair. */
-    public Builder addPart(String name, String value) {
+    public Builder add(String name, String value) {
       if (content.length() > 0) {
         content.append('&');
       }

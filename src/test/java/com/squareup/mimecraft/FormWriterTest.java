@@ -10,8 +10,8 @@ import static org.fest.assertions.api.Assertions.assertThat;
 public class FormWriterTest {
   @Test public void urlEncoding() throws Exception {
     FormEncoding fe = new FormEncoding.Builder() //
-        .addPart("a&b", "c=d") //
-        .addPart("space, the", "final frontier") //
+        .add("a&b", "c=d") //
+        .add("space, the", "final frontier") //
         .build();
 
     ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -22,7 +22,7 @@ public class FormWriterTest {
 
   @Test public void encodedPairs() throws Exception {
     FormEncoding fe1 = new FormEncoding.Builder() //
-        .addPart("sim", "ple") //
+        .add("sim", "ple") //
         .build();
 
     ByteArrayOutputStream out1 = new ByteArrayOutputStream();
@@ -31,9 +31,9 @@ public class FormWriterTest {
     assertThat(actual1).isEqualTo("sim=ple");
 
     FormEncoding fe2 = new FormEncoding.Builder() //
-        .addPart("sim", "ple") //
-        .addPart("hey", "there") //
-        .addPart("help", "me") //
+        .add("sim", "ple") //
+        .add("hey", "there") //
+        .add("help", "me") //
         .build();
 
     ByteArrayOutputStream out2 = new ByteArrayOutputStream();

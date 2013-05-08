@@ -25,8 +25,8 @@ Examples
 Form-encoded content:
 ```java
 FormEncoding fe = new FormEncoding.Builder()
-    .addPart("name", "Lorem Ipsum")
-    .addPart("occupation", "Filler Text")
+    .add("name", "Lorem Ipsum")
+    .add("occupation", "Filler Text")
     .build();
 ```
 
