@@ -44,8 +44,8 @@ Multipart m = new Multipart.Builder()
     .build();
 ```
 
-Content can be written to an output stream using the `writeTo` method. For best performance, use a
-`BufferedOutputStream`.
+Content can be written to an output stream using the `writeBodyTo` method. For best performance, use
+a `BufferedOutputStream`.
 
 Header values such as `Content-Type` and `Content-Length` are available by calling `getHeaders()`.
 
