@@ -11,7 +11,7 @@
 
   <groupId>com.squareup.mimecraft</groupId>
   <artifactId>mimecraft</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>Mime Craft</name>
   <description>Utility for creating RFC-compliant multipart and form-encoded HTTP request bodies.</description>
