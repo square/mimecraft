@@ -13,7 +13,7 @@ Download [the latest .jar][1] or depend via Maven:
 ```xml
 <dependency>
   <groupId>com.squareup.mimecraft</groupId>
-  <artifactId>mimecraft<artifactId>
+  <artifactId>mimecraft</artifactId>
   <version>(insert latest version)</version>
 </dependency>
 ```
