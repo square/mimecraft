@@ -5,6 +5,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.util.Map;
+import org.fest.assertions.data.MapEntry;
 import org.junit.Test;
 
 import static com.squareup.mimecraft.Utils.UTF_8;
@@ -124,13 +126,15 @@ public class PartTest {
     p.writeBodyTo(baos);
     String actual = new String(baos.toByteArray(), UTF_8);
     assertThat(actual).isEqualTo("{'foo':'bar'}");
-    assertThat(p.getHeaders()).containsOnly( //
-        "Content-Disposition: form-data; filename=\"foo.txt\"", //
-        "Content-Type: application/json", //
-        "Content-Length: 13", //
-        "Content-Language: English", //
-        "Content-Transfer-Encoding: UTF-8" //
-    );
+    assertThat(p.getHeaders())
+        .hasSize(5)
+        .contains( //
+            MapEntry.entry("Content-Disposition", "form-data; filename=\"foo.txt\""), //
+            MapEntry.entry("Content-Type", "application/json"), //
+            MapEntry.entry("Content-Length", "13"), //
+            MapEntry.entry("Content-Language", "English"), //
+            MapEntry.entry("Content-Transfer-Encoding", "UTF-8") //
+        );
   }
   @Test public void multipartBodySetsType() throws Exception {
     Multipart m = new Multipart.Builder().addPart(new TestPart("hi")).build();
@@ -142,6 +146,8 @@ public class PartTest {
     }
 
     Part p = new Part.Builder().body(m).build();
-    assertThat(p.getHeaders()).containsAll(m.getHeaders());
+    for (Map.Entry<String, String> header : m.getHeaders().entrySet()) {
+        assertThat(p.getHeaders()).contains(MapEntry.entry(header.getKey(), header.getValue()));
+    }
   }
 }

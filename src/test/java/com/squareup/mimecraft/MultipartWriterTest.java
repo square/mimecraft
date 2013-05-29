@@ -2,6 +2,8 @@
 package com.squareup.mimecraft;
 
 import java.io.ByteArrayOutputStream;
+
+import org.fest.assertions.data.MapEntry;
 import org.junit.Test;
 
 import static com.squareup.mimecraft.Utils.UTF_8;
@@ -28,7 +30,9 @@ public class MultipartWriterTest {
     m.writeBodyTo(out);
     String actual = new String(out.toByteArray(), UTF_8);
     assertThat(actual).isEqualTo(expected);
-    assertThat(m.getHeaders()).containsExactly("Content-Type: multipart/mixed; boundary=123");
+    assertThat(m.getHeaders())
+        .hasSize(1)
+        .contains(MapEntry.entry("Content-Type", "multipart/mixed; boundary=123"));
   }
 
   @Test public void threeParts() throws Exception {
@@ -54,6 +58,8 @@ public class MultipartWriterTest {
     m.writeBodyTo(out);
     String actual = new String(out.toByteArray(), UTF_8);
     assertThat(actual).isEqualTo(expected);
-    assertThat(m.getHeaders()).containsExactly("Content-Type: multipart/mixed; boundary=123");
+    assertThat(m.getHeaders())
+        .hasSize(1)
+        .contains(MapEntry.entry("Content-Type", "multipart/mixed; boundary=123"));
   }
 }

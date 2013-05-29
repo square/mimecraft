@@ -2,6 +2,7 @@
 package com.squareup.mimecraft;
 
 import java.io.ByteArrayOutputStream;
+import org.fest.assertions.data.MapEntry;
 import org.junit.Test;
 
 import static com.squareup.mimecraft.Utils.UTF_8;
@@ -64,6 +65,7 @@ public class ComplexExamplesTest {
     String actual = new String(out.toByteArray(), UTF_8);
     assertThat(actual).isEqualTo(expected);
     assertThat(m.getHeaders()) //
-        .containsExactly("Content-Type: multipart/form-data; boundary=AaB03x");
+        .hasSize(1) //
+        .contains(MapEntry.entry("Content-Type", "multipart/form-data; boundary=AaB03x"));
   }
 }
