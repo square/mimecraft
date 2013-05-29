@@ -14,6 +14,7 @@ public class FormWriterTest {
         .add("space, the", "final frontier") //
         .build();
 
+    assertThat(fe.getHeaders()).containsKey("Content-Type");
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     fe.writeBodyTo(out);
     String actual = new String(out.toByteArray(), UTF_8);
