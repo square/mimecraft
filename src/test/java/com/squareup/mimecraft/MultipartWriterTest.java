@@ -2,7 +2,6 @@
 package com.squareup.mimecraft;
 
 import java.io.ByteArrayOutputStream;
-
 import org.fest.assertions.data.MapEntry;
 import org.junit.Test;
 
