@@ -150,7 +150,7 @@ public interface Part {
         headers.put("Content-Type", headerType);
       }
       if (headerLength != 0) {
-        headers.put("Content-Length", Integer.valueOf(headerLength).toString());
+        headers.put("Content-Length", Integer.toString(headerLength));
       }
       if (headerLanguage != null) {
         headers.put("Content-Language", headerLanguage);

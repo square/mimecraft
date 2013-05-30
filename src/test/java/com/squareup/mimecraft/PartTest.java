@@ -147,7 +147,7 @@ public class PartTest {
 
     Part p = new Part.Builder().body(m).build();
     for (Map.Entry<String, String> header : m.getHeaders().entrySet()) {
-        assertThat(p.getHeaders()).contains(MapEntry.entry(header.getKey(), header.getValue()));
+      assertThat(p.getHeaders()).contains(MapEntry.entry(header.getKey(), header.getValue()));
     }
   }
 }
