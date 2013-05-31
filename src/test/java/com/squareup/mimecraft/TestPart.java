@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.util.Collections;
 import java.util.Map;
 
-import static com.squareup.mimecraft.Utils.UTF_8;
+import static com.squareup.mimecraft.TestUtils.UTF_8;
 
 public class TestPart implements Part {
   private final byte[] content;

@@ -6,10 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.squareup.mimecraft.Utils.UTF_8;
 import static com.squareup.mimecraft.Utils.copyStream;
 import static com.squareup.mimecraft.Utils.isNotEmpty;
 import static com.squareup.mimecraft.Utils.isNotNull;
@@ -112,7 +112,12 @@ public interface Part {
     public Builder body(String body) {
       isNotNull(body, "String body must not be null.");
       checkSetBody();
-      byte[] bytes = body.getBytes(UTF_8);
+      byte[] bytes;
+      try {
+        bytes = body.getBytes("UTF-8");
+      } catch (UnsupportedEncodingException e) {
+        throw new IllegalArgumentException("Unable to convert input to UTF-8: " + body, e);
+      }
       bodyBytes = bytes;
       headerLength = bytes.length;
       return this;

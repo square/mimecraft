@@ -47,7 +47,11 @@ public final class FormEncoding implements Part {
   private final byte[] data;
 
   private FormEncoding(String data) {
-    this.data = data.getBytes(Utils.UTF_8);
+    try {
+      this.data = data.getBytes("UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      throw new IllegalArgumentException("Unable to convert input to UTF-8: " + data, e);
+    }
   }
 
   @Override public Map<String, String> getHeaders() {

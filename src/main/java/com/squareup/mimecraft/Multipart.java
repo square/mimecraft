@@ -140,10 +140,10 @@ public final class Multipart implements Part {
     Map<String, String> headers = part.getHeaders();
     if (headers != null) {
       for (Map.Entry<String, String> header : headers.entrySet()) {
-        out.write(header.getKey().getBytes(Utils.UTF_8));
+        out.write(header.getKey().getBytes("UTF-8"));
         out.write(':');
         out.write(' ');
-        out.write(header.getValue().getBytes(Utils.UTF_8));
+        out.write(header.getValue().getBytes("UTF-8"));
         out.write('\r');
         out.write('\n');
       }
