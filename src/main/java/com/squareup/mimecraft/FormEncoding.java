@@ -5,17 +5,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
 /**
  * <a href="http://www.w3.org/MarkUp/html-spec/html-spec_8.html#SEC8.2.1">HTML 2.0</a>-compliant
  * form data.
  */
 public final class FormEncoding implements Part {
-  private static final List<String> HEADERS =
-      Collections.unmodifiableList(Arrays.asList("application/x-www-form-urlencoded"));
+  private static final Map<String, String> HEADERS =
+      Collections.singletonMap("Content-Type", "application/x-www-form-urlencoded");
 
   /** Fluent API to build {@link FormEncoding} instances. */
   public static class Builder {
@@ -55,7 +54,7 @@ public final class FormEncoding implements Part {
     }
   }
 
-  @Override public List<String> getHeaders() {
+  @Override public Map<String, String> getHeaders() {
     return HEADERS;
   }
 

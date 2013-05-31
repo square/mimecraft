@@ -4,7 +4,7 @@ package com.squareup.mimecraft;
 import java.io.ByteArrayOutputStream;
 import org.junit.Test;
 
-import static com.squareup.mimecraft.Utils.UTF_8;
+import static com.squareup.mimecraft.TestUtils.UTF_8;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class FormWriterTest {
@@ -14,6 +14,7 @@ public class FormWriterTest {
         .add("space, the", "final frontier") //
         .build();
 
+    assertThat(fe.getHeaders()).containsKey("Content-Type");
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     fe.writeBodyTo(out);
     String actual = new String(out.toByteArray(), UTF_8);

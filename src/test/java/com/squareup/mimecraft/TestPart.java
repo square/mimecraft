@@ -4,9 +4,9 @@ package com.squareup.mimecraft;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
-import static com.squareup.mimecraft.Utils.UTF_8;
+import static com.squareup.mimecraft.TestUtils.UTF_8;
 
 public class TestPart implements Part {
   private final byte[] content;
@@ -15,8 +15,8 @@ public class TestPart implements Part {
     this.content = content.getBytes(UTF_8);
   }
 
-  @Override public List<String> getHeaders() {
-    return Collections.emptyList();
+  @Override public Map<String, String> getHeaders() {
+    return Collections.emptyMap();
   }
 
   @Override public void writeBodyTo(OutputStream out) throws IOException {

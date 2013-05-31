@@ -4,8 +4,9 @@ package com.squareup.mimecraft;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static com.squareup.mimecraft.Utils.isNotNull;
@@ -90,19 +91,19 @@ public final class Multipart implements Part {
   }
 
   private final List<Part> parts;
-  private final List<String> headers;
+  private final Map<String, String> headers;
   private final String boundary;
 
   private Multipart(Type type, List<Part> parts, String boundary) {
     isNotNull(type, "Multipart type must not be null.");
 
     this.parts = parts;
-    this.headers =
-        Arrays.asList("Content-Type: multipart/" + type.contentType + "; boundary=" + boundary);
+    this.headers = Collections.singletonMap(
+        "Content-Type", "multipart/" + type.contentType + "; boundary=" + boundary);
     this.boundary = boundary;
   }
 
-  @Override public List<String> getHeaders() {
+  @Override public Map<String, String> getHeaders() {
     return headers;
   }
 
@@ -136,10 +137,13 @@ public final class Multipart implements Part {
   }
 
   private static void writePart(OutputStream out, Part part) throws IOException {
-    List<String> headers = part.getHeaders();
+    Map<String, String> headers = part.getHeaders();
     if (headers != null) {
-      for (String header : headers) {
-        out.write(header.getBytes("UTF-8"));
+      for (Map.Entry<String, String> header : headers.entrySet()) {
+        out.write(header.getKey().getBytes("UTF-8"));
+        out.write(':');
+        out.write(' ');
+        out.write(header.getValue().getBytes("UTF-8"));
         out.write('\r');
         out.write('\n');
       }

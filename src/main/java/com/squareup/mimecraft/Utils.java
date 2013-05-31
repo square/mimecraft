@@ -4,11 +4,8 @@ package com.squareup.mimecraft;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 
 final class Utils {
-  static final Charset UTF_8 = Charset.forName("UTF-8");
-
   private Utils() {
     // No instances.
   }

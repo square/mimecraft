@@ -6,10 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import static com.squareup.mimecraft.Utils.UTF_8;
 import static com.squareup.mimecraft.Utils.copyStream;
 import static com.squareup.mimecraft.Utils.isNotEmpty;
 import static com.squareup.mimecraft.Utils.isNotNull;
@@ -19,7 +19,7 @@ import static com.squareup.mimecraft.Utils.isNull;
 /** HTTP request data with associated headers. */
 public interface Part {
   /** HTTP headers. */
-  List<String> getHeaders();
+  Map<String, String> getHeaders();
 
   /**
    * Write request data to the specified stream. For best performance use a
@@ -112,7 +112,12 @@ public interface Part {
     public Builder body(String body) {
       isNotNull(body, "String body must not be null.");
       checkSetBody();
-      byte[] bytes = body.getBytes(UTF_8);
+      byte[] bytes;
+      try {
+        bytes = body.getBytes("UTF-8");
+      } catch (UnsupportedEncodingException e) {
+        throw new IllegalArgumentException("Unable to convert input to UTF-8: " + body, e);
+      }
       bodyBytes = bytes;
       headerLength = bytes.length;
       return this;
@@ -142,21 +147,21 @@ public interface Part {
 
     /** Assemble the specified headers and body into a {@link Part}. */
     public Part build() {
-      List<String> headers = new ArrayList<String>();
+      Map<String, String> headers = new LinkedHashMap<String, String>();
       if (headerDisposition != null) {
-        headers.add("Content-Disposition: " + headerDisposition);
+        headers.put("Content-Disposition", headerDisposition);
       }
       if (headerType != null) {
-        headers.add("Content-Type: " + headerType);
+        headers.put("Content-Type", headerType);
       }
       if (headerLength != 0) {
-        headers.add("Content-Length: " + Integer.valueOf(headerLength));
+        headers.put("Content-Length", Integer.toString(headerLength));
       }
       if (headerLanguage != null) {
-        headers.add("Content-Language: " + headerLanguage);
+        headers.put("Content-Language", headerLanguage);
       }
       if (headerEncoding != null) {
-        headers.add("Content-Transfer-Encoding: " + headerEncoding);
+        headers.put("Content-Transfer-Encoding", headerEncoding);
       }
 
       if (bodyBytes != null) {
@@ -169,20 +174,20 @@ public interface Part {
         return new FilePart(headers, bodyFile);
       }
       if (bodyMultipart != null) {
-        headers.addAll(bodyMultipart.getHeaders());
+        headers.putAll(bodyMultipart.getHeaders());
         return new PartPart(headers, bodyMultipart);
       }
       throw new IllegalStateException("Part required body to be set.");
     }
 
     private abstract static class PartImpl implements Part {
-      private final List<String> headers;
+      private final Map<String, String> headers;
 
-      protected PartImpl(List<String> headers) {
+      protected PartImpl(Map<String, String> headers) {
         this.headers = headers;
       }
 
-      @Override public List<String> getHeaders() {
+      @Override public Map<String, String> getHeaders() {
         return headers;
       }
     }
@@ -190,7 +195,7 @@ public interface Part {
     private static final class PartPart extends PartImpl {
       private final Part body;
 
-      protected PartPart(List<String> headers, Part body) {
+      protected PartPart(Map<String, String> headers, Part body) {
         super(headers);
         this.body = body;
       }
@@ -203,7 +208,7 @@ public interface Part {
     static final class BytesPart extends PartImpl {
       private final byte[] contents;
 
-      BytesPart(List<String> headers, byte[] contents) {
+      BytesPart(Map<String, String> headers, byte[] contents) {
         super(headers);
         this.contents = contents;
       }
@@ -217,7 +222,7 @@ public interface Part {
       private final InputStream in;
       private final byte[] buffer = new byte[BUFFER_SIZE];
 
-      private StreamPart(List<String> headers, InputStream in) {
+      private StreamPart(Map<String, String> headers, InputStream in) {
         super(headers);
         this.in = in;
       }
@@ -231,7 +236,7 @@ public interface Part {
       private final File file;
       private final byte[] buffer = new byte[BUFFER_SIZE];
 
-      private FilePart(List<String> headers, File file) {
+      private FilePart(Map<String, String> headers, File file) {
         super(headers);
         this.file = file;
       }
