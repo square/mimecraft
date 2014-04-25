@@ -63,7 +63,7 @@ public final class Multipart implements Part {
       this(UUID.randomUUID().toString());
     }
 
-    Builder(String boundary) {
+    public Builder(String boundary) {
       this.boundary = boundary;
     }
 
