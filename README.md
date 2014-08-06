@@ -17,6 +17,10 @@ Download [the latest .jar][1] or depend via Maven:
   <version>(insert latest version)</version>
 </dependency>
 ```
+or Gradle:
+```groovy
+compile 'com.squareup.mimecraft:mimecraft:1.1.1'
+```
 
 
 Examples
