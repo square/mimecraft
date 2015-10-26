@@ -4,6 +4,11 @@ Mime Craft
 Utility for creating RFC-compliant multipart and form-encoded HTTP request bodies.
 
 
+Deprecated!
+-----------
+
+This project is now deprecated. Its replacement is `MultipartBuilder`, within the [OkHttp](https://github.com/square/okhttp/) project.
+
 
 Download
 --------
